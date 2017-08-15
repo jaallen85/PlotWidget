@@ -1,4 +1,4 @@
-/* PlotGraphWidget.h
+/* PlotTypes.h
  *
  * Copyright (C) 2017- Jason Allen
  *
@@ -18,52 +18,46 @@
  * along with PlotWidget.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#ifndef PLOTGRAPHWIDGET_H
-#define PLOTGRAPHWIDGET_H
+#ifndef PLOTTYPES_H
+#define PLOTTYPES_H
 
 #include <QtWidgets>
 
-
-
-
-class PlotItem
+class PlotSeries
 {
-	//PlotWidget* parent() const;
-
-	//visible
-	//font
-
-	//QPoint pos() const;
-	//virtual QSize size() const = 0;
-	//QRect rect() const;
-
-	//virtual void render(QPainter* painter) = 0;
-
-signals:
-
-public slots:
-}
-
-class PlotLegend : public PlotItem
-{
-
-};
-
-class PlotArea : public PlotItem
-{
-
-};
-
-class PlotGraphWidget : public QWidget
-{
-	Q_OBJECT
-
 private:
+	QString mName;
+	QPen mPen;
+	QVector<QPointF> mData;
+	bool mVisible;
 
+	int mMaximumDataSize;	// <1 = unlimited
 
 public:
-	PlotGraphWidget();
-	~PlotGraphWidget();
+	PlotSeries();
+	PlotSeries(const PlotSeries& series);
+	~PlotSeries();
+
+	PlotSeries operator=(const PlotSeries& series);
+
+	void setName(const QString& name);
+	QString name() const;
+
+	void setPen(const QPen& pen);
+	QPen pen() const;
+
+	void setData(const QVector<QPointF>& data);
+	QVector<QPointF> data() const;
+
+	void setVisible(bool visible);
+	bool isVisible() const;
+
+	// Convenience functions for using series as a FIFO
+	void setMaximumDataSize(int size);
+	int maximumDataSize() const;
+
+	void pushData(const QPointF& value);
+	void popData();
 };
 
 #endif

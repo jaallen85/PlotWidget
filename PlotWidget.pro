@@ -19,10 +19,12 @@ QT += widgets
 SOURCES += \
     source/PlotChartWidget.cpp \
     source/PlotGraphWidget.cpp \
+    source/PlotTypes.cpp \
     source/MainWindow.cpp \
     source/main.cpp
 
 HEADERS += \
     source/PlotChartWidget.h \
     source/PlotGraphWidget.h \
+    source/PlotTypes.h \
     source/MainWindow.h

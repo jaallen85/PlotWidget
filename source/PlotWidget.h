@@ -34,9 +34,13 @@ protected:
 
 	QList<PlotSeries*> mSeries;
 
+	int mSpacing;
+
 public:
 	PlotWidget();
 	virtual ~PlotWidget();
+
+	QSize sizeHint() const;
 
 	//background
 	//grid
@@ -55,6 +59,9 @@ public:
 	int numberOfSeries() const;
 	QList<PlotSeries*> allSeries() const;
 	PlotSeries* series(int index) const;
+
+	void setSpacing(int spacing);
+	int spacing() const;
 };
 
 #endif

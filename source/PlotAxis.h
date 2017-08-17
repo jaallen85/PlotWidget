@@ -31,9 +31,24 @@ class PlotAxis : public QObject
 
 	friend class PlotWidget;
 
+public:
+	enum Mapping { Linear, Logarithmic };
+	enum NumberFormat { Normal, Scientific };
+
 protected:
 	PlotWidget* mParent;
 	Qt::Orientation mOrientation;
+
+	QString mTitle;
+
+	Mapping mMapping;
+	qreal mMinimum;
+	qreal mMaximum;
+
+	qreal mMajorScale;
+	qreal mMinorScale;
+
+	NumberFormat mNumberFormat;
 
 public:
 	PlotAxis(Qt::Orientation orientation);
@@ -42,9 +57,30 @@ public:
 	PlotWidget* parent() const;
 	Qt::Orientation orientation() const;
 
-	/*virtual QSize size() const;
+	void setTitle(const QString& title);
+	QString title() const;
 
-	virtual void paint(QPainter* painter);
+	void setMapping(Mapping mapping);
+	Mapping mapping() const;
+
+	void setRange(qreal minimum, qreal maximum);
+	void setMinimum(qreal minimum);
+	void setMaximum(qreal maximum);
+	qreal minimum() const;
+	qreal maximum() const;
+
+	void setScale(qreal major, qreal minor);
+	void setMajorScale(qreal major);
+	void setMinorScale(qreal minor);
+	qreal majorScale() const;
+	qreal minorScale() const;
+
+	void setNumberFormat(NumberFormat format);
+	NumberFormat numberFormat() const;
+
+	virtual QSize size() const;
+
+	/*virtual void paint(QPainter* painter);
 
 protected:
 	virtual void mousePressEvent(QMouseEvent* event);

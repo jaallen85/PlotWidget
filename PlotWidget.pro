@@ -8,7 +8,9 @@ INCLUDEPATH += source
 
 CONFIG += release warn_on embed_manifest_dll c++11 qt
 CONFIG -= debug
-QT += widgets
+
+QT += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 !win32:MOC_DIR = release
 !win32:OBJECTS_DIR = release

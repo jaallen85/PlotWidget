@@ -29,8 +29,14 @@ class PlotLegend : public QObject
 
 	friend class PlotWidget;
 
+public:
+	enum Location { None, TopLeftCorner, TopRightCorner, BottomLeftCorner, BottomRightCorner,
+		LeftAdjacent, RightAdjacent };
+
 protected:
 	PlotWidget* mParent;
+
+	Location mLocation;
 
 public:
 	PlotLegend();
@@ -38,9 +44,12 @@ public:
 
 	PlotWidget* parent() const;
 
-	/*virtual QSize size() const;
+	void setLocation(Location location);
+	Location location() const;
 
-	virtual void paint(QPainter* painter);
+	virtual QSize size() const;
+
+	/*virtual void paint(QPainter* painter);
 
 protected:
 	virtual void mousePressEvent(QMouseEvent* event);

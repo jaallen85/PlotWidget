@@ -27,6 +27,10 @@ PlotWidget::PlotWidget() : QWidget()
 	mHorizontalAxis = nullptr;
 	mVerticalAxis = nullptr;
 	mLegend = nullptr;
+	mSpacing = 4;
+
+	setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+	setMouseTracking(true);
 
 	setHorizontalAxis(new PlotAxis(Qt::Horizontal));
 	setVerticalAxis(new PlotAxis(Qt::Vertical));
@@ -39,6 +43,13 @@ PlotWidget::~PlotWidget()
 	delete mHorizontalAxis;
 	delete mVerticalAxis;
 	delete mLegend;
+}
+
+//==================================================================================================
+
+QSize PlotWidget::sizeHint() const
+{
+	return QSize(480, 360);
 }
 
 //==================================================================================================
@@ -121,3 +132,16 @@ PlotSeries* PlotWidget::series(int index) const
 {
 	return mSeries.at(index);
 }
+
+//==================================================================================================
+
+void PlotWidget::setSpacing(int spacing)
+{
+	if (spacing >= 0) mSpacing = spacing;
+}
+
+int PlotWidget::spacing() const
+{
+	return mSpacing;
+}
+

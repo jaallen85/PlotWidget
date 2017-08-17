@@ -21,40 +21,9 @@
 #ifndef PLOTGRAPHWIDGET_H
 #define PLOTGRAPHWIDGET_H
 
-#include <QtWidgets>
+#include <PlotWidget.h>
 
-
-
-
-class PlotItem
-{
-	//PlotWidget* parent() const;
-
-	//visible
-	//font
-
-	//QPoint pos() const;
-	//virtual QSize size() const = 0;
-	//QRect rect() const;
-
-	//virtual void render(QPainter* painter) = 0;
-
-signals:
-
-public slots:
-}
-
-class PlotLegend : public PlotItem
-{
-
-};
-
-class PlotArea : public PlotItem
-{
-
-};
-
-class PlotGraphWidget : public QWidget
+class PlotGraphWidget : public PlotWidget
 {
 	Q_OBJECT
 

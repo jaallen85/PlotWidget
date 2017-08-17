@@ -1,4 +1,4 @@
-/* PlotChartWidget.cpp
+/* PlotSeries.h
  *
  * Copyright (C) 2017- Jason Allen
  *
@@ -18,14 +18,44 @@
  * along with PlotWidget.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#include "PlotChartWidget.h"
+#ifndef PLOTSERIES_H
+#define PLOTSERIES_H
 
-PlotChartWidget::PlotChartWidget() : PlotWidget()
+#include <QtGlobal>
+
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#include <QtGui>
+#else
+#include <QtWidgets>
+#endif
+
+class PlotWidget;
+class PlotAxis;
+class PlotLegend;
+
+class PlotSeries
 {
+private:
+	QString mName;
+	QPen mPen;
+	QVector<QPointF> mData;
+	bool mVisible;
 
-}
+public:
+	PlotSeries();
+	~PlotSeries();
 
-PlotChartWidget::~PlotChartWidget()
-{
+	void setName(const QString& name);
+	QString name() const;
 
-}
+	void setPen(const QPen& pen);
+	QPen pen() const;
+
+	void setData(const QVector<QPointF>& data);
+	QVector<QPointF> data() const;
+
+	void setVisible(bool visible);
+	bool isVisible() const;
+};
+
+#endif

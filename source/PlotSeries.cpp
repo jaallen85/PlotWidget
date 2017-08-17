@@ -1,4 +1,4 @@
-/* PlotTypes.cpp
+/* PlotSeries.cpp
  *
  * Copyright (C) 2017- Jason Allen
  *
@@ -18,36 +18,14 @@
  * along with PlotWidget.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#include "PlotTypes.h"
+#include "PlotSeries.h"
 
 PlotSeries::PlotSeries()
 {
 	mVisible = true;
-	mMaximumDataSize = -1;
-}
-
-PlotSeries::PlotSeries(const PlotSeries& series)
-{
-	mName = series.mName;
-	mPen = series.mPen;
-	mData = series.mData;
-	mVisible = series.mVisible;
-	mMaximumDataSize = series.mMaximumDataSize;
 }
 
 PlotSeries::~PlotSeries() { }
-
-//==================================================================================================
-
-PlotSeries PlotSeries::operator=(const PlotSeries& series)
-{
-	mName = series.mName;
-	mPen = series.mPen;
-	mData = series.mData;
-	mVisible = series.mVisible;
-	mMaximumDataSize = series.mMaximumDataSize;
-	return *this;
-}
 
 //==================================================================================================
 
@@ -95,30 +73,4 @@ void PlotSeries::setVisible(bool visible)
 bool PlotSeries::isVisible() const
 {
 	return mVisible;
-}
-
-//==================================================================================================
-
-void PlotSeries::setMaximumDataSize(int size)
-{
-	mMaximumDataSize = size;
-	if (size > 0) mData.reserve(size);
-}
-
-int PlotSeries::maximumDataSize() const
-{
-	return mMaximumDataSize;
-}
-
-//==================================================================================================
-
-void PlotSeries::pushData(const QPointF& value)
-{
-	while (mMaximumDataSize > 0 && mData.size() > mMaximumDataSize) mData.pop_front();
-	mData.push_back(value);
-}
-
-void PlotSeries::popData()
-{
-	mData.pop_front();
 }

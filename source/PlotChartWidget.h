@@ -21,9 +21,9 @@
 #ifndef PLOTCHARTWIDGET_H
 #define PLOTCHARTWIDGET_H
 
-#include <QtWidgets>
+#include <PlotWidget.h>
 
-class PlotChartWidget : public QWidget
+class PlotChartWidget : public PlotWidget
 {
 	Q_OBJECT
 

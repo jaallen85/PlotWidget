@@ -1,4 +1,4 @@
-/* PlotChartWidget.cpp
+/* PlotAxis.h
  *
  * Copyright (C) 2017- Jason Allen
  *
@@ -18,14 +18,39 @@
  * along with PlotWidget.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#include "PlotChartWidget.h"
+#ifndef PLOTAXIS_H
+#define PLOTAXIS_H
 
-PlotChartWidget::PlotChartWidget() : PlotWidget()
+#include <QtWidgets>
+
+#include <PlotSeries.h>
+
+class PlotAxis : public QObject
 {
+	Q_OBJECT
 
-}
+	friend class PlotWidget;
 
-PlotChartWidget::~PlotChartWidget()
-{
+protected:
+	PlotWidget* mParent;
+	Qt::Orientation mOrientation;
 
-}
+public:
+	PlotAxis(Qt::Orientation orientation);
+	virtual ~PlotAxis();
+
+	PlotWidget* parent() const;
+	Qt::Orientation orientation() const;
+
+	/*virtual QSize size() const;
+
+	virtual void paint(QPainter* painter);
+
+protected:
+	virtual void mousePressEvent(QMouseEvent* event);
+	virtual void mouseMoveEvent(QMouseEvent* event);
+	virtual void mouseReleaseEvent(QMouseEvent* event);
+	virtual void mouseDoubleClickEvent(QMouseEvent* event);*/
+};
+
+#endif

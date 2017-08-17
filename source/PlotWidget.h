@@ -1,4 +1,4 @@
-/* PlotChartWidget.cpp
+/* PlotWidget.h
  *
  * Copyright (C) 2017- Jason Allen
  *
@@ -18,14 +18,43 @@
  * along with PlotWidget.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#include "PlotChartWidget.h"
+#ifndef PLOTWIDGET_H
+#define PLOTWIDGET_H
 
-PlotChartWidget::PlotChartWidget() : PlotWidget()
+#include <PlotSeries.h>
+
+class PlotWidget : public QWidget
 {
+	Q_OBJECT
 
-}
+protected:
+	PlotAxis* mHorizontalAxis;
+	PlotAxis* mVerticalAxis;
+	PlotLegend* mLegend;
 
-PlotChartWidget::~PlotChartWidget()
-{
+	QList<PlotSeries*> mSeries;
 
-}
+public:
+	PlotWidget();
+	virtual ~PlotWidget();
+
+	//background
+	//grid
+
+	void setHorizontalAxis(PlotAxis* axis);
+	void setVerticalAxis(PlotAxis* axis);
+	PlotAxis* horizontalAxis() const;
+	PlotAxis* verticalAxis() const;
+
+	void setLegend(PlotLegend* legend);
+	PlotLegend* legend() const;
+
+	void addSeries(PlotSeries* series);
+	void removeSeries(PlotSeries* series);
+	void clearSeries();
+	int numberOfSeries() const;
+	QList<PlotSeries*> allSeries() const;
+	PlotSeries* series(int index) const;
+};
+
+#endif

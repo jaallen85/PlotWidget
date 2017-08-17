@@ -17,14 +17,20 @@ QT += widgets
 # --------------------------------------------------------------------------------------------------
 
 SOURCES += \
+    source/PlotAxis.cpp \
+    source/PlotLegend.cpp \
     source/PlotChartWidget.cpp \
     source/PlotGraphWidget.cpp \
-    source/PlotTypes.cpp \
+    source/PlotSeries.cpp \
+    source/PlotWidget.cpp \
     source/MainWindow.cpp \
     source/main.cpp
 
 HEADERS += \
+    source/PlotAxis.h \
+    source/PlotLegend.h \
     source/PlotChartWidget.h \
     source/PlotGraphWidget.h \
-    source/PlotTypes.h \
+    source/PlotSeries.h \
+    source/PlotWidget.h \
     source/MainWindow.h

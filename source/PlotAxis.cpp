@@ -1,4 +1,4 @@
-/* PlotChartWidget.cpp
+/* PlotAxis.cpp
  *
  * Copyright (C) 2017- Jason Allen
  *
@@ -18,14 +18,27 @@
  * along with PlotWidget.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#include "PlotChartWidget.h"
+#include "PlotAxis.h"
 
-PlotChartWidget::PlotChartWidget() : PlotWidget()
+PlotAxis::PlotAxis(Qt::Orientation orientation)
 {
-
+	mParent = nullptr;
+	mOrientation = orientation;
 }
 
-PlotChartWidget::~PlotChartWidget()
+PlotAxis::~PlotAxis()
 {
+	mParent = nullptr;
+}
 
+//==================================================================================================
+
+PlotWidget* PlotAxis::parent() const
+{
+	return mParent;
+}
+
+Qt::Orientation PlotAxis::orientation() const
+{
+	return mOrientation;
 }

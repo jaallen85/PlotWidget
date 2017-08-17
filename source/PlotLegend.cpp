@@ -1,4 +1,4 @@
-/* PlotChartWidget.cpp
+/* PlotLegend.cpp
  *
  * Copyright (C) 2017- Jason Allen
  *
@@ -18,14 +18,21 @@
  * along with PlotWidget.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#include "PlotChartWidget.h"
+#include "PlotLegend.h"
 
-PlotChartWidget::PlotChartWidget() : PlotWidget()
+PlotLegend::PlotLegend()
 {
-
+	mParent = nullptr;
 }
 
-PlotChartWidget::~PlotChartWidget()
+PlotLegend::~PlotLegend()
 {
+	mParent = nullptr;
+}
 
+//==================================================================================================
+
+PlotWidget* PlotLegend::parent() const
+{
+	return mParent;
 }

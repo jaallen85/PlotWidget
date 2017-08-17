@@ -20,7 +20,7 @@
 
 #include "PlotGraphWidget.h"
 
-PlotGraphWidget::PlotGraphWidget() : QWidget()
+PlotGraphWidget::PlotGraphWidget() : PlotWidget()
 {
 
 }

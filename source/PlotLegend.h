@@ -1,4 +1,4 @@
-/* PlotTypes.h
+/* PlotLegend.h
  *
  * Copyright (C) 2017- Jason Allen
  *
@@ -18,46 +18,35 @@
  * along with PlotWidget.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#ifndef PLOTTYPES_H
-#define PLOTTYPES_H
+#ifndef PLOTLEGEND_H
+#define PLOTLEGEND_H
 
-#include <QtWidgets>
+#include <PlotSeries.h>
 
-class PlotSeries
+class PlotLegend : public QObject
 {
-private:
-	QString mName;
-	QPen mPen;
-	QVector<QPointF> mData;
-	bool mVisible;
+	Q_OBJECT
 
-	int mMaximumDataSize;	// <1 = unlimited
+	friend class PlotWidget;
+
+protected:
+	PlotWidget* mParent;
 
 public:
-	PlotSeries();
-	PlotSeries(const PlotSeries& series);
-	~PlotSeries();
+	PlotLegend();
+	virtual ~PlotLegend();
 
-	PlotSeries operator=(const PlotSeries& series);
+	PlotWidget* parent() const;
 
-	void setName(const QString& name);
-	QString name() const;
+	/*virtual QSize size() const;
 
-	void setPen(const QPen& pen);
-	QPen pen() const;
+	virtual void paint(QPainter* painter);
 
-	void setData(const QVector<QPointF>& data);
-	QVector<QPointF> data() const;
-
-	void setVisible(bool visible);
-	bool isVisible() const;
-
-	// Convenience functions for using series as a FIFO
-	void setMaximumDataSize(int size);
-	int maximumDataSize() const;
-
-	void pushData(const QPointF& value);
-	void popData();
+protected:
+	virtual void mousePressEvent(QMouseEvent* event);
+	virtual void mouseMoveEvent(QMouseEvent* event);
+	virtual void mouseReleaseEvent(QMouseEvent* event);
+	virtual void mouseDoubleClickEvent(QMouseEvent* event);*/
 };
 
 #endif
